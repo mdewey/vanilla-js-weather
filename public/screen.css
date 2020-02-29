@@ -34,6 +34,8 @@ header>h1 {
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 form {
@@ -54,7 +56,7 @@ form>input {
 }
 
 .display {
-  min-height: 20rem;
+  height: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,8 +72,14 @@ form>input {
 .display>h2 {
   font-weight: normal;
   text-transform: uppercase;
+  text-align: center;
+  line-height: 2rem;
 }
 
 .display>p {
   font-size: 3rem;
+}
+
+.hide {
+  display: none;
 }
