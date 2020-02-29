@@ -2,6 +2,27 @@
 const API_KEY = '5c418bd61b262dfeab5ee02852a70c07'
 const API_BASE_URL = `https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=${API_KEY}`
 
+const displayResults = (message, weather) => {
+  // find where we want to put it
+  const parent = document.querySelector('.display')
+  // reset the content
+  parent.textContent = ''
+  // create and add the message
+  const title = document.createElement('h2')
+  title.textContent = message
+  parent.appendChild(title)
+  if (weather) {
+    parent.classList.remove('error')
+    parent.classList.add('success')
+    const weatherDisplay = document.createElement('p')
+    weatherDisplay.textContent = `${weather.main.temp}° and ${weather.weather[0].main}`.toLowerCase()
+    parent.appendChild(weatherDisplay)
+  } else {
+    parent.classList.remove('success')
+    parent.classList.add('error')
+  }
+}
+
 // form submit event
 const handleSubmit = async e => {
   // disable form submit data back to server
@@ -16,26 +37,15 @@ const handleSubmit = async e => {
   if (apiResponse.status === 200) {
     const weatherData = await apiResponse.json()
     console.log(weatherData)
-    // display message for the user that where was an
-    document.querySelector('.error-message').textContent = ''
-    document.querySelector(
-      '.location-display'
-    ).textContent = `Currently in ${location}`
-    document.querySelector(
-      '.current-weather'
-    ).textContent = `${weatherData.main.temp}° and ${weatherData.weather[0].main}`.toLowerCase()
+    displayResults(`Currently in ${location}`, weatherData)
   } else if (apiResponse.status === 404) {
     // display message for the user when the city was not found
-    document.querySelector('.error-message').textContent =
-      'Location was not found, double check your city. '
-    document.querySelector('.location-display').textContent = ''
-    document.querySelector('.current-weather').textContent = ''
+    displayResults('Location was not found, double check your city. ')
   } else {
     // display message for the user that where was an
-    document.querySelector('.error-message').textContent =
+    displayResults(
       'There was an issue communication with the API, please try again'
-    document.querySelector('.location-display').textContent = ''
-    document.querySelector('.current-weather').textContent = ''
+    )
   }
 }
 
