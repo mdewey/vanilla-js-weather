@@ -15,7 +15,10 @@ const displayResults = (message, weather) => {
     parent.classList.remove('error')
     parent.classList.add('success')
     const weatherDisplay = document.createElement('p')
-    weatherDisplay.textContent = `${weather.main.temp}° and ${weather.weather[0].main}`.toLowerCase()
+    weatherDisplay.textContent = `${weather.main.temp}°`.toLowerCase()
+    const weatherIcon = document.createElement('img')
+    weatherIcon.src = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`
+    parent.appendChild(weatherIcon)
     parent.appendChild(weatherDisplay)
   } else {
     parent.classList.remove('success')

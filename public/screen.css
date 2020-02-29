@@ -43,8 +43,10 @@ form {
 }
 
 form>label {
-  font-size: 0.8rem;
+  font-size: 0.75em;
   color: rgb(68, 68, 68);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
 }
 
 form>input {
@@ -52,5 +54,24 @@ form>input {
 }
 
 .display {
-  min-height: 10rem;
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: lightseagreen;
+  width: 50%;
+  margin: 2rem;
+  border: 0.1rem solid rgb(128, 128, 128);
+  border-radius: 3px;
+  box-shadow: 10px 5px 5px rgb(65, 65, 65);
+}
+
+.display>h2 {
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.display>p {
+  font-size: 3rem;
 }
